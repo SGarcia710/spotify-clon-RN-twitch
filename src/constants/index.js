@@ -1,3 +1,11 @@
+import * as React from 'react';
+
+import HomeScreen from '../screens/Home';
+import LibraryScreen from '../screens/Library';
+import SearchScreen from '../screens/Search';
+import { FontAwesome, Foundation, Ionicons } from '@expo/vector-icons';
+import { decideSize } from '../utils';
+
 const SONGS = [
   {
     name: 'Como Estrellas Radio',
@@ -37,4 +45,33 @@ const SONGS = [
   },
 ];
 
-export { SONGS };
+const TAB_ROUTES = {
+  home: {
+    name: 'Inicio',
+    component: HomeScreen,
+  },
+  search: {
+    name: 'Búsqueda',
+    component: SearchScreen,
+  },
+  library: {
+    name: 'Tu biblioteca',
+    component: LibraryScreen,
+  },
+};
+
+const TAB_ICON_SIZE = decideSize(24);
+
+const TAB_ICONS = {
+  [TAB_ROUTES.home.name]: (color) => (
+    <Foundation name="home" size={TAB_ICON_SIZE} color={color} />
+  ),
+  [TAB_ROUTES.search.name]: (color) => (
+    <FontAwesome name="search" size={TAB_ICON_SIZE} color={color} />
+  ),
+  [TAB_ROUTES.library.name]: (color) => (
+    <Ionicons name="ios-library" size={TAB_ICON_SIZE} color={color} />
+  ),
+};
+
+export { SONGS, TAB_ROUTES, TAB_ICONS };
