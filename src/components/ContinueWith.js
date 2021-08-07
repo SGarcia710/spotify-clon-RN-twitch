@@ -9,21 +9,27 @@ import {
 } from 'react-native';
 import { SONGS } from '../constants';
 import { decideSize } from '../utils';
+import { useNavigation } from '@react-navigation/native';
 
 const ContinueWithItem = (props) => {
+  const { song } = props;
+  const navigation = useNavigation();
   return (
     <TouchableOpacity
       style={styles.continueWithItemContainer}
       onPress={() => {
-        console.log(`Seleccionaste ${props.name}`);
+        console.log(`Seleccionaste ${song.name}`);
+        navigation.navigate('SongPlayer', {
+          song,
+        });
       }}
     >
       <Image
         style={styles.continueWithItemImage}
-        source={{ uri: props.image }}
+        source={{ uri: song.image }}
       />
       <Text numberOfLines={2} style={styles.continueWithItemName}>
-        {props.name}
+        {song.name}
       </Text>
     </TouchableOpacity>
   );
@@ -35,9 +41,7 @@ const ContinueWith = () => {
       <Text style={styles.text}>Vuelve a...</Text>
       <ScrollView horizontal>
         {React.Children.toArray(
-          SONGS.map((ele) => (
-            <ContinueWithItem image={ele.image} name={ele.name} />
-          ))
+          SONGS.map((ele) => <ContinueWithItem song={ele} />)
         )}
       </ScrollView>
     </View>

@@ -11,6 +11,7 @@ const HomeScreen = () => {
     <ScrollView
       style={{
         backgroundColor: 'black',
+        paddingHorizontal: 16,
       }}
     >
       <Header />

@@ -18,6 +18,5 @@ const styles = StyleSheet.create({
     position: 'relative',
     paddingTop: 62,
     backgroundColor: 'black',
-    paddingHorizontal: 16,
   },
 });
